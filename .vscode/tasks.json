@@ -1,0 +1,87 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create pdf for print",
+            "type": "shell",
+            "command": "docker-compose run --rm review rake pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create pdf for ebook-print",
+            "type": "shell",
+            "command": "docker-compose run --rm -e REVIEW_CONFIG_FILE=config-ebook-print.yml review rake pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create pdf for e-book",
+            "type": "shell",
+            "command": "docker-compose run --rm -e REVIEW_CONFIG_FILE=config-ebook.yml review rake pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "create pdf for e-book-sample",
+            "type": "shell",
+            "command": "docker-compose run --rm -e REVIEW_CONFIG_FILE=config-ebook-sample.yml review rake pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "open pdf for print in chrome",
+            "type": "shell",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind.pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "open pdf for ebook in chrome",
+            "type": "shell",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' file://wsl%24/Ubuntu-18.04/${workspaceRoot}/articles/MyKotlinMind-ebook.pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "open pdf for ebook-print in chrome",
+            "type": "shell",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind-ebook-print.pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "open pdf for ebook sample in chrome",
+            "type": "shell",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind-ebook-sample.pdf",
+            "options": {
+                "cwd": "${workspaceRoot}/articles"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+PREDEF:
+  - preface.re
+
+CHAPS:
+  - article.re
+  - article2.re
+  - article3-title-only.re
+  - article4-title-only.re
+  - article5-title-only.re
+  - article6-title-only.re
+  - article7-title-only.re
+  - article8-title-only.re
+  - article9-title-only.re
+  - article10-title-only.re
+  - article11-title-only.re
+  - article12-title-only.re
+  - article_owarini-title-only.re

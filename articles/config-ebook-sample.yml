@@ -1,0 +1,14 @@
+# 電子版サンプル用の上書き設定
+# 以下のいずれかのコマンドでPDFをビルドできる
+#  - REVIEW_CONFIG_FILE=config-ebook-sample.yml rake pdf
+#  - review-pdfmaker config--ebook-sample.yml
+#  - REVIEW_CONFIG_FILE=config-ebook.yml npm run pdf
+
+# 継承元設定
+inherit: ["config-ebook.yml"]
+
+# ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
+bookname: MyKotlinMind-ebook-sample
+
+# カタログファイル名を指定する
+catalogfile: catalog-ebook-sample.yml

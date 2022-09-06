@@ -1,0 +1,18 @@
+PREDEF:
+  - preface.re
+
+CHAPS:
+  - article.re
+  - article2.re
+  - article3.re
+  - article4.re
+  - article5.re
+  - article6.re
+  - article7.re
+  - article_owarini.re
+
+APPENDIX:
+
+POSTDEF:
+  - contributors.re
+  # - article_owarini.re
