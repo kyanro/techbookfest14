@@ -42,7 +42,7 @@
         {
             "label": "open pdf for print in chrome",
             "type": "shell",
-            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind.pdf",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind2.pdf",
             "options": {
                 "cwd": "${workspaceRoot}/articles"
             },
@@ -51,7 +51,7 @@
         {
             "label": "open pdf for ebook in chrome",
             "type": "shell",
-            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' file://wsl%24/Ubuntu-18.04/${workspaceRoot}/articles/MyKotlinMind-ebook.pdf",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' file://wsl%24/Ubuntu-18.04/${workspaceRoot}/articles/MyKotlinMind2-ebook.pdf",
             "options": {
                 "cwd": "${workspaceRoot}/articles"
             },
@@ -64,7 +64,7 @@
         {
             "label": "open pdf for ebook-print in chrome",
             "type": "shell",
-            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind-ebook-print.pdf",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind2-ebook-print.pdf",
             "options": {
                 "cwd": "${workspaceRoot}/articles"
             },
@@ -77,7 +77,7 @@
         {
             "label": "open pdf for ebook sample in chrome",
             "type": "shell",
-            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind-ebook-sample.pdf",
+            "command": "'/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe' MyKotlinMind2-ebook-sample.pdf",
             "options": {
                 "cwd": "${workspaceRoot}/articles"
             },
