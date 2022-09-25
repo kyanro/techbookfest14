@@ -1,41 +1,55 @@
-= Null を積極的に使うようになった
+= 非同期処理をコルーチンで書くようになった
 
-== 何もないことを表現するのに null を使うようになった
-例えば、何かItemを選択した状態を表現する場合、選択していない場合は素直にnullをつかうようになった。
+== コルーチンを積極的に使うようになったパターンの例
+
+ * Api の実行
+ ** 1回だけ実行する
+ *** 1回目の結果を利用して2回目をたたく
+ ** 複数のリクエストを並列で実行する
+ * androidの AsyncTask(古い非同期処理パターン)の置き換え
+
+Apiの実行についてはよく見るかと思うので、ここではandroidの AsyncTask(古い非同期処理パターン)の置き換えの例を示します。
 
 //list[null-1][今までの作り]{
-// NPEが発生しないようにする
-val EMPTY_ITEM = Item("empty_item")
-val selectedItem: Item = EMPTY_ITEM
-// 選択されたアイテム名を表示。
-selectedItem.name
+// AsyncTaskクラスの作成
+val task = object : AsyncTask<Void?, Void?, Int>() {
+    override fun doInBackground(vararg p0: Void?): Int {
+        // 時間がかかる処理
+        return superLongTask()
+    }
+
+    override fun onPostExecute(result: Int) {
+        // 結果を表示
+        textView.text = result.toString()
+    }
+}
+
+// 処理の開始
+task.execute()
 //}
 
-今までは、 NullPointerException を警戒したり、NullCheckで煩雑にならないように、 EMPTY_ITEM などを定義してできるだけ null が入らないようにしていた。
-
-//list[null-2][現在の作り]{
-val selectedItem: Item? = null
-
-// 選択されたアイテム名を表示。アイテム名が null なら代わりに任意の文字列を表示
-val selectedItemName = selectedItem?.name ?: "no item selected"
+古い非同期処理パターンでは、実際の処理の流れとコードの流れが一致していなかったり、非同期処理専用のクラスの使い方を覚える必要がある等の問題がありました。
+//blankline
+これをコルーチンで書き直してみます。
+//list[null-2][コルーチンでの作り]{
+val scope = CoroutineScope(Dispatchers.IO)
+scope.async {
+    // 時間がかかる処理
+    val result = superLongTask()
+    withContext(Dispatchers.Main) {
+        // 結果を表示
+        textView.text = result.toString()
+    }
+}
 //}
 
-Kotlin では safe call でNPEが発生しないようにかけたり、Null チェックが楽にかけたりするので、素直に null を利用するようになった。
+コルーチンを利用したパターンでは、
 
-結果として、コード上の表現が、実際にやりたいことに近くなった。
+ * 実際の処理の流れとコードの流れが一致
+ * ほとんど同期的なコードと書き方が変わらない
 
-== 例外を返す代わりに null を返せないか考えるようになった
-Kotlinの標準Apiには xxxOrNull() のようなメソッドが多くあり、実際に使ってみると使い勝手が非常に良かった。
+ようにかくことが出来ました。
+//blankline
+今回は実際に局所的な書き換えの為に多少分かりにくい部分があったり、気を付けなければいけない部分が残っていたりしますが、もう少し大きめのリファクタリングが可能であれば、suspend function を利用するなどしてもっと直感的に書くことも可能です。
 
-なので、自分でApiを設計する際にも OrNull を用意することが多くなった。
-
-//list[null-3][OrNull のサンプル(数値のパース)]{
-    val numStr = "1234"
-    "1234".toIntOrNull() ?: 0 // 1234
-    val str = "hoge"
-    "hoge".toIntOrNull() ?: 0 // 0
-//}
-
-
-
-
+詳しくはぜひ公式のコルーチンのドキュメントをご参照ください。
