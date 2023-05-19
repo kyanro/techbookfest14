@@ -11,7 +11,7 @@ kotlinを使って書いていると、そういうときに拡張関数を使�
 
 という問題が発生してしまいます。
 
-//list[int-extensions][Int型の拡張関数を作成したさいに問題になる例]{
+//list[int-extensions][Int型の拡張関数を作成した際に問題になる例]{
 // R.drawable.my_icon のようなリソースを Drawable に変換する拡張関数
 fun Int.toDrawable(context: Context) =
     ContextCompat.getDrawable(context, this)
