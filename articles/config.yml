@@ -17,12 +17,12 @@ review_version: 4.0
 # inherit: ["A.yml", "B.yml"]
 
 # ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
-bookname: MyKotlinMind2
+bookname: ProgrammingWithAI
 # 記述言語。省略した場合はja
 language: ja
 
 # 書名
-booktitle: {name: "Kotlinになって変わったプログラムの書き方2", file-as: "reviewテンプレート"}
+booktitle: {name: "AIさんとサービスを作ろう！ ~面倒なことは全部僕がやりました~", file-as: "reviewテンプレート"}
 
 # 著者名。「, 」で区切って複数指定できる
 aut: [{name: "kyanro"}]

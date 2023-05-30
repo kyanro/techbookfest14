@@ -3,6 +3,6 @@ services:
   review:
     image: vvakame/review:4.0
     volumes:
-      - $PWD:/techbookfest13
+      - $PWD:/techbookfest14
     build: .
-    working_dir: /techbookfest13
+    working_dir: /techbookfest14

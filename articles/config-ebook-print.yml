@@ -8,7 +8,7 @@
 inherit: ["config.yml"]
 
 # ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
-bookname: MyKotlinMind2-ebook-print
+bookname: ProgrammingWithAI-ebook-print
 
 coverimage: null
 
