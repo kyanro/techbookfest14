@@ -1,12 +1,14 @@
+# TODO: 目次もAIさんに作ってもらう
+
 PREDEF:
   - preface.re
 
 CHAPS:
   - article.re
-  - article2.re
-  - article3.re
-  - article4.re
-  - article5.re
+  # - article2.re
+  # - article3.re
+  # - article4.re
+  # - article5.re
   - article_owarini.re
 
 APPENDIX:
