@@ -1,60 +1,41 @@
-= scopeを絞った拡張関数の利用
-#@# interface で宣言。companion object に設定して with で利用
+= 画面を作ろう！(Html)
+仕様を満たせる、htmlの画面を作ります。
 
-Android のアプリを書いていると、メソッドの引数としてリソースID(Int型)を渡してなんらかのインスタンスを得る、という処理をかくことがままあります。
+仕様は、
 
-kotlinを使って書いていると、そういうときに拡張関数を使ってリソースIDをインスタンスに変換してやると便利なのではないか、と思いがちです。
-//blankline
-もちろん拡張関数を素直にかいてもよいのですが、そうすると、
+@<strong>{二つの単語を入力すると、合成した単語と、その来歴をでっちあげるサービス} なので、
 
- * リソースIDではない Int 型に対しても拡張関数の処理が実行できてしまう
+ * 二つの入力欄がある
+ ** それぞれの入力欄には、元になる単語が入る
+ * 二つの入力欄の下には、合成した単語が表示される
+ * 合成した単語の下には、その来歴が表示される
+ * 二つの単語を合成するボタンがある
 
-という問題が発生してしまいます。
+という要件を満たすhtmlの画面が作れればよさそうです。
 
-//list[int-extensions][Int型の拡張関数を作成した際に問題になる例]{
-// R.drawable.my_icon のようなリソースを Drawable に変換する拡張関数
-fun Int.toDrawable(context: Context) =
-    ContextCompat.getDrawable(context, this)
+今回は ChatGPTさんに作成をお願いしてみましょう。
 
-// 正しく使われる例
-R.drawable.my_icon.toDrawable(context)
+//list[html-chat-gpt][ChatGPT4さんにお願いした文言]{
+"二つの単語を入力すると、合成した単語と、その来歴をでっちあげるサービス" を作成したいと思っています。
+下記の仕様を満たすhtmlの画面を作成してください。
 
-// 誤って使われる例
-(1 + 2).toDrawable(context)
+装飾にはTailwind CSSを利用してください。
+JavaScriptフレームワークは、最新のAlpine.jsを利用してください。
+楽しさが伝わるような装飾だと嬉しいです。
+
+
+```仕様
+ * 二つの入力欄がある
+ ** それぞれの入力欄には、元になる単語が入る
+ * 二つの入力欄の下には、合成した単語が表示される
+ * 合成した単語の下には、その来歴が表示される
+ * 二つの単語を合成するボタンがある
 //}
 
-このようなときは拡張関数をあるスコープの中でのみ利用できるように制限しておくと便利です
-//list[int-extensions-in-resource-scope][Int型の拡張関数を特定のスコープ限定にする例]{
-interface DrawableScope {
-    // R.drawable.my_icon のようなリソースを Drawable に変換する拡張関数
-    fun Int.toDrawable(context: Context) =
-        ContextCompat.getDrawable(context, this)
-}
 
-// 正しく使われる例
-with(object: DrawableScope{}) {
-    R.drawable.my_icon.toDrawable(context)
-}
-
-// 誤って使えない例
-(1 + 2).toDrawable(context)
-
+//image[html_chat_gpt_1][ChatGPTさんによって作成されたhtml画面][scale=0.5]{
 //}
 
-Int 型のように、広く使われている型に対する拡張関数の利用を制限することができました！
-//blankline
-もちろん Int 型以外にも利用できますので似たような問題が発生したときにはぜひ上記を思い出してみてください。
-//blankline
-余談ですが、頻繁に利用する場合は companion object を定義しておくと、少し便利になります。
+すばらしいですね！
 
-//list[int-extensions-in-resource-scope2][少し便利な定義方法と使い方]{
-interface DrawableScope {
-    companion object: DrawableScope
-    // 以下scopeを絞りたい拡張関数等...
-}
-
-// companion object が定義されているため、Interface名のみで利用可能
-with(DrawableScope) {
-    R.drawable.my_icon.toDrawable(context)
-}
-//}
+特に手直しする必要もなく、仕様を満たす画面が作成されました。
