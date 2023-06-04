@@ -48,10 +48,8 @@ AIが創造的な物を作成する、いわゆる、「生成AI」と呼ばれ�
  ** 協業したAIさんたち
  *** ChatGPT(GPT4-Browse with Bing) - Html生成、JavaScript生成
  *** BingAI(Edge) - Html生成、JavaScript生成
- *** Image Creater(Edge) - 画像生成
+ *** Image Creater(Edge) - 画像生成(コンセプトイメージ、イメージキャラクター)
  *** Github Copilot - Html生成、JavaScript生成、文章生成
- **** Github Copilot Chat - 上記補佐
- *** vectorizer.ai(Webサービス) - 画像変換
  * @<strong>{AIさんが主の場合、どのようなWebサービスができるのかに興味がある人}
  * @<strong>{このページの文の2割くらいはAIさんの補完で書かれていると聞いたら驚く人}
  ** 実際に、このページの文の2割くらいはAIさんの補完で書かれています。

@@ -1,45 +1,18 @@
-= static なメソッドを作りたくなった際に、拡張関数の方がわかりやすくないか考えるようになった
+= イメージキャラクターを作ろう！
 
-//list[use-extention-function][staticなメソッドによるチェックと拡張関数によるチェック]{
-// staticなメソッドによるチェック
-fun isCat(animalSpecies: String) = animalSpecies.lowercase() == "cat"
+イメージキャラクターがいると、サービスがより身近に感じられるようになります。
 
-val animalSpecies1 = "Cat"
-println(isCat(animalSpecies1)) // true
+新しいアイテムを錬成するAIさん、をコンセプトにイメージキャラクターを作ってみましょう！
 
-val animalSpecies2 = "Dog"
-println(isCat(animalSpecies2)) // false
+ファビコンなどにも使えるようにしたいので、シンプルで、かつ、小さいサイズでも可愛いものを目指します。
 
-
-// 拡張関数によるチェック
-fun String.isCat() = this.lowercase() == "cat"
-
-val animalSpecies1 = "Cat"
-println(animalSpecies1.isCat()) // true
-
-val animalSpecies2 = "Dog"
-println(animalSpecies2.isCat()) // false
+//list[image_character_request][Image Creatorさんにお願いした文言]{
+シンプルでとても可愛いロボットの錬金術師。輪郭が幾何学的ではっきりしている。アニメ漫画風。使用している色数は少ない。周囲に錬成用の道具が浮かんでいる。
 //}
 
-この例が良いかどうかは疑問が残るところですが、拡張関数を利用したほうが自然に読み下せるように書けることが多そう、という雰囲気は伝わるのではないかと思います。
-
-また、拡張関数は @<strong>{Int や float といったプリミティブ型}に対しても利用できたり、@<strong>{private} や @<strong>{関数内関数}としても利用できるので例えば下記のような使い方もできます。
-
-//list[apply-extention-function-to-premitive][プリミティブ型への拡張関数適用例]{
-// android で、drawable resource id から drawable を取得するための関数
-// 全体への影響が大きすぎて、public では宣言しづらいので private で宣言
-private fun Int.toDrawable(context: Context) =
-    ContextCompat.getDrawable(context, this)
-
-// 拡張関数を使わない場合はこんな感じ
-ContextCompat.getDrawable(context, R.drawable.icon_cat)
-
-// 拡張関数を使う場合はこんな感じ
-R.drawable.icon_cat.toDrawable(context)
+//image[image_character][Image Creatorさんによって作成された画像]{
 //}
 
-Android では、Apiレベルによる違いを利用するために、@<strong>{xxxCompat} というクラスを利用することが多いのですが、Compatクラスの静的な呼び出しになるのでどうしてもコードが長くなりがちです。
+すばらしいイメージキャラクターができました！
 
-リソースを取得するコードはよく利用するので全体に適用したところなのですが、リソースを指定するキーは単なる Int 型なので全体に適用するには範囲が広すぎます。
-
-そういった時に、必要な個所でだけ private で拡張関数を定義してやることで、コードが短くかつ分かりやすくかけるようになります。
+サービスのロゴに使ったり、ファビコンに使ったりできそうですね！
